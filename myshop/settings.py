@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
-    
 ]
 
 MIDDLEWARE = [
@@ -140,18 +139,8 @@ CART_SESSION_ID = 'cart'
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-BRAINTREE_MERCHANT_ID = 't2nvr2xxvxs54yt9'  # Merchant ID
-BRAINTREE_PUBLIC_KEY = 'srzfx96c5cpxds2c'   # Public Key
-BRAINTREE_PRIVATE_KEY = 'd4ac40625d2584c7a90e406267d216dc'  # Private key
-
-from braintree import Configuration, Environment
-
-Configuration.configure(
-    Environment.Sandbox,
-    BRAINTREE_MERCHANT_ID,
-    BRAINTREE_PUBLIC_KEY,
-    BRAINTREE_PRIVATE_KEY
-)
+STRIPE_SECRET_KEY = 'sk_test_eLU3NqfpuaaduxSPV8l9IUbL001KGNm2TW'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_Y6MPdhD4C5oZwooiEOByrYKk002J5r927D'
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 

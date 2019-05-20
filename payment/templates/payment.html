@@ -1,0 +1,18 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+  Pay Your Bill
+{% endblock %}
+
+{% block content %}
+  <h1>Hello</h1>
+  <form action="{% url 'payment:charge' %}" method="post">
+      {% csrf_token %}
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="{{ key }}"
+              data-description="A Django Charge"
+              data-amount="500"
+              data-locale="auto"></script>
+    </form>
+{% endblock %}
