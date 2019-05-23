@@ -1,4 +1,6 @@
+
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -74,7 +76,7 @@
                 
               </li>
               <li>
-                <a href="about.html">About</a>
+                <a href="{% url "shop:about" %}">About</a>
               </li>
               <li><a href="{% url "shop:product_list" %}">Shop</a></li>
               <li><a href="#">Recommended</a></li>

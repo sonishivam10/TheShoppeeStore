@@ -44,5 +44,5 @@ class Product(models.Model):
         return reverse("shop:product_detail", args=[self.id, self.slug])
     
 
-        
+  
 

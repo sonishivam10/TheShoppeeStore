@@ -31,3 +31,5 @@ def product_detail(request, id, slug):
                   {'product': product,
                    'cart_product_form': cart_product_form})
 
+def about(request): # new
+        return render(request, 'shop/product/about.html')
