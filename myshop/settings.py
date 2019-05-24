@@ -138,10 +138,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 #session setting for user cart
 CART_SESSION_ID = 'cart'
 
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 STRIPE_SECRET_KEY = 'sk_test_eLU3NqfpuaaduxSPV8l9IUbL001KGNm2TW'
 STRIPE_PUBLISHABLE_KEY = 'pk_test_Y6MPdhD4C5oZwooiEOByrYKk002J5r927D'
 
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
+
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
