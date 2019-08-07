@@ -44,7 +44,7 @@
                 </figure>
                 <div class="block-4-text p-4">
                   <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
-                  <p class="text-primary font-weight-bold">${{ product.price }}</p>
+                  <p class="text-primary font-weight-bold">Rs. {{ product.price }}</p>
                 </div>
               </div>
             </div>
@@ -60,7 +60,7 @@
           <div class="border p-4 rounded mb-4">
             <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
             <ul class="list-unstyled mb-0">
-              <li {% if not category %} class="mb-1" {% endif %}><a class="d-flex" href="{% url "shop:product_list" %}"><span>All</span> <span class="text-black ml-auto">(2,220)</span></a></li>  
+              <li {% if not category %} class="mb-1" {% endif %}><a class="d-flex" href="{% url "shop:product_list" %}"><span>All</span></a></li>  
               {% for c in categories %}
                 <li {% if category.slug == c.slug %} class="mb-1" {% endif %}><a class="d-flex" href="{{ c.get_absolute_url }}"><span>{{ c.name }}</span></a></li>
               {% endfor %}

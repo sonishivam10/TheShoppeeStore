@@ -24,22 +24,9 @@
             <div class="col-md-6">
               <h2 class="text-black">{{ product.name }}</h2>
               <p>{{ product.description|linebreaks }}</p>
-              <p><strong class="text-primary h4">${{ product.price }}</strong></p>
-              <div class="mb-1 d-flex">
-                <label class="d-flex mr-3 mb-3" for="option-sm">
-                  <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input name="shop-sizes" id="option-sm" type="radio"></span> <span class="d-inline-block text-black">Small</span>
-                </label>
-                <label class="d-flex mr-3 mb-3" for="option-md">
-                  <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input name="shop-sizes" id="option-md" type="radio"></span> <span class="d-inline-block text-black">Medium</span>
-                </label>
-                <label class="d-flex mr-3 mb-3" for="option-lg">
-                  <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input name="shop-sizes" id="option-lg" type="radio"></span> <span class="d-inline-block text-black">Large</span>
-                </label>
-                <label class="d-flex mr-3 mb-3" for="option-xl">
-                  <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input name="shop-sizes" id="option-xl" type="radio"></span> <span class="d-inline-block text-black"> Extra Large</span>
-                </label>
-              </div>
-              <div class="mb-5">
+              <p><strong class="text-primary h4">Rs. {{ product.price }}</strong></p>
+              
+              <div class="mb-5 mt-5">
                 <form action="{% url "cart:cart_add" product.id %}" method="post">
                 <div class="input-group mb-3" style="max-width: 120px;">
                     <div class="input-group-prepend">

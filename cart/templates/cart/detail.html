@@ -42,7 +42,7 @@
                         <td class="product-name">
                           <h2 class="h5 text-black">{{ product.name }}</h2>
                         </td>
-                        <td>${{ item.price }}</td>
+                        <td>Rs. {{ item.price }}</td>
                         <td>
                           <form action="{% url "cart:cart_add" product.id %}" method="post">
                             <div class="input-group mb-3" style="max-width: 120px;">
@@ -59,7 +59,7 @@
                             </div>
                           </form>    
                         </td>
-                        <td>${{ item.total_price }}</td>
+                        <td>Rs. {{ item.total_price }}</td>
                         <td><a href="{% url "cart:cart_remove" product.id %}" class="btn btn-primary btn-sm">X</a></td>
                       </tr>
                     {% endwith %}
@@ -102,7 +102,7 @@
                     <span class="text-black">Subtotal</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">${{ cart.get_total_price }}</strong>
+                    <strong class="text-black">Rs. {{ cart.get_total_price }}</strong>
                   </div>
                 </div>
                 <div class="row mb-5">
@@ -110,13 +110,21 @@
                     <span class="text-black">Total</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">${{ cart.get_total_price }}</strong>
+                    <strong class="text-black">Rs. {{ cart.get_total_price }}</strong>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-md-12">
-                    <a href="{% url "orders:order_create" %}" ><button class="btn btn-primary btn-lg py-3 btn-block" >Proceed To Checkout</button></a>
+                  {% with total_items=cart|length %}
+                    {% if total_items == 0 %}
+                      <a href="{% url "shop:product_list" %}" ><button class="btn btn-primary btn-lg py-3 btn-block" >Cart Empty: Add items</button></a>
+
+                    {% else %}
+                      <a href="{% url "orders:order_create" %}" ><button class="btn btn-primary btn-lg py-3 btn-block" >Proceed To Checkout</button></a>
+
+                    {% endif %}
+                  {% endwith %}
                   </div>
                 </div>
               </div>

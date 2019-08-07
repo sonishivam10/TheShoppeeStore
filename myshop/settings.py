@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic', # new! 
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'users',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
@@ -147,3 +148,5 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_Y6MPdhD4C5oZwooiEOByrYKk002J5r927D'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+DATE_INPUT_FORMATS = ('%m-%Y','%Y-%m')

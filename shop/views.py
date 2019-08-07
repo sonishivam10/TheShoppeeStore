@@ -1,10 +1,16 @@
 # sendemail/views.py
+from django.contrib.auth.decorators import permission_required
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category, Product
 from cart.forms import CartAddProductForm
 from .forms import ContactForm
+
+from users.models import User
+import datetime
+
 def homepage(request):
     return render(request, 'shop/product/home.html')
 
@@ -23,7 +29,7 @@ def product_list(request, category_slug=None):
                    'products': products})
 
 
-
+@login_required(login_url="/users/login")
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id,
                                          slug=slug,

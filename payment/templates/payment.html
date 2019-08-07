@@ -25,7 +25,7 @@
                   <script src="https://checkout.stripe.com/checkout.js"  class="stripe-button"
                           data-key="{{ key }}"
                           data-description="The Shoppee"
-                          data-amount=${{ cart.get_total_price }}
+                          data-amount=Rs. {{ cart.get_total_price }}
                           data-locale="auto"></script>
                 </form></p>
             </div>

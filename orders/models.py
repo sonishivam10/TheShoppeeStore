@@ -1,8 +1,12 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from shop.models import Product
 # Create your models here.
 
 class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user', null=True)
     first_name=models.CharField( max_length=50)
     last_name=models.CharField( max_length=50)
     email=models.EmailField()
@@ -12,7 +16,7 @@ class Order(models.Model):
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField( auto_now =True)
     paid=models.BooleanField(default=False)
-    braintree_id = models.CharField(max_length=150, blank=True)
+    
     
     class Meta:
         ordering=('-created',)

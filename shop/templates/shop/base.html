@@ -17,49 +17,105 @@
     <link rel="stylesheet" href="{% static "css/owl.carousel.min.css" %}">
     <link rel="stylesheet" href="{% static "css/owl.theme.default.min.css" %}">
     <link rel="stylesheet" href="{% static "css/checkout.css" %}">
-
     <link rel="stylesheet" href="{% static "css/aos.css" %}">
-
     <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static "images/icons/favicon.ico" %}">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static "fonts/font-awesome-4.7.0/css/font-awesome.min.css" %}">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static "fonts/iconic/css/material-design-iconic-font.min.css" %}">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static "vendor/animate/animate.css" %}">
+  <!--===============================================================================================-->	
+    <link rel="stylesheet" type="text/css" href="{% static "vendor/css-hamburgers/hamburgers.min.css" %}">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static "vendor/animsition/css/animsition.min.css" %}">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static "vendor/select2/select2.min.css" %}">
+  <!--===============================================================================================-->	
+    <link rel="stylesheet" type="text/css" href="{% static "vendor/daterangepicker/daterangepicker.css" %}">
+  <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static "css/util.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/main1.css" %}">
+  <!--===============================================================================================-->
+
     
   </head>
 
   <body>
-  
+    
     <div class="site-wrap">
       <header class="site-navbar" role="banner">
         <div class="site-navbar-top">
           <div class="container">
             <div class="row align-items-center">
   
-              <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+              <!-----<div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
                 <form action="" class="site-block-top-search">
                   <span class="icon icon-search2"></span>
                   <input type="text" class="form-control border-0" placeholder="Search">
                 </form>
-              </div>
+              </div>-->
   
-              <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+              <div class="col-auto mb-1 mb-md-0 col-md-4 order-1 order-md-2 text-left">
                 <div class="site-logo">
-                  <a href="/" class="js-logo-clone">Shoppers</a>
+                  <a href="/" class="js-logo-clone">The Shoppee</a>
                 </div>
               </div>
   
-              <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+              <div class="col-auto col-md-8 order-3 order-md-3 text-right">
                 <div class="site-top-icons">
-                  <ul>
-                    <li><a href="#"><span class="icon icon-person"></span></a></li>
-                    <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
-                    <li>
-                        {% with total_items=cart|length %}
-                        <a href="{% url "cart:cart_detail" %}" class="site-cart">
-                            <span class="icon icon-shopping_cart"></span>
-                            <span class="count">
-                                {{ total_items}}
-                        {% endwith %}
-                        </span>
-                      </a>
-                    </li> 
+                  <ul >
+                    {% if user.is_authenticated %}
+                      <li >
+                            <div class="dropdown">
+                              <a href="#" role="button" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="icon icon-person"></span>
+                              </a>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'users:details' %}">Hi {{ user.username }} </a>
+                                <a class="dropdown-item" href="{% url 'users:myorders' %}">My Orders </a>
+                                <form  action="{% url 'users:logout' %}" method="post">
+                                    {% csrf_token %}
+                                    <button class="dropdown-item" href="{% url 'users:logout' %}" type="submit" >Logout</a>
+                                </form>
+                              </div>
+                            </div>
+                        </li>
+                        <li>
+                            {% with total_items=cart|length %}
+                            <a href="{% url "cart:cart_detail" %}" class="site-cart">
+                                <span class="icon icon-shopping_cart"></span>
+                                <span class="count">
+                                    {{ total_items}}
+                            {% endwith %}
+                            </span>
+                          </a>
+                        </li> 
+                      
+                    {% else %}
+                      
+                      <!--These dont need to be forms so need to be converted at some point
+                          Also, they need to be added to the mobile collapsed menu-->
+                          
+                          <li >
+                            <div class="dropdown">
+                              <a href="#" role="button" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="icon icon-person"></span>
+                              </a>
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'users:login' %}">Login</a>
+                                <a class="dropdown-item" href="{% url 'users:signup' %}">SignUp</a>
+                              </div>
+                            </div>
+                          </li>
+                          
+                    {% endif %}
+                   
+                    
                     <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
                   </ul>
                 </div> 
@@ -79,7 +135,7 @@
                 <a href="{% url "shop:about" %}">About</a>
               </li>
               <li><a href="{% url "shop:product_list" %}">Shop</a></li>
-              <li><a href="#">Recommended</a></li>
+              <!---<li><a href="#">Recommended</a></li>-->
               <li><a href="{% url "shop:contact" %}">Contact</a></li>
             </ul>
           </div>
@@ -104,22 +160,21 @@
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
                   <li><a href="/">Home</a></li>
+                  <li><a href="{% url "shop:product_list" %}">Shop</a></li>
                   <li><a href="{% url "cart:cart_detail" %}">Shopping cart</a></li>
-                  <li><a href="#">Store builder</a></li>
+                  
                 </ul>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Mobile commerce</a></li>
-                  <li><a href="#">Dropshipping</a></li>
-                  <li><a href="#">Website development</a></li>
+                  <li><a href="{% url "shop:about" %}">About</a></li>
+                  <li><a href="{% url "shop:contact" %}">Contact Us</a></li>
+                 
                 </ul>
               </div>
               <div class="col-md-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><a href="#">Point of sale</a></li>
-                  <li><a href="#">Hardware</a></li>
-                  <li><a href="#">Software</a></li>
+                  
                 </ul>
               </div>
             </div>
@@ -131,21 +186,13 @@
             <div class="block-5 mb-5">
               <h3 class="footer-heading mb-4">Contact Info</h3>
               <ul class="list-unstyled">
-                <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-                <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                <li class="email">emailaddress@domain.com</li>
+                <li class="address">Jaipur, Rajasthan</li>
+                <li class="phone"><a href="tel://23923929210">+91-9001149471</a></li>
+                <li class="email">sonishivama@gmail.com</li>
               </ul>
             </div>
 
-            <div class="block-7">
-              <form action="#" method="post">
-                <label for="email_subscribe" class="footer-heading">Subscribe</label>
-                <div class="form-group">
-                  <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
-                  <input type="submit" class="btn btn-sm btn-primary" value="Send">
-                </div>
-              </form>
-            </div>
+           
           </div>
         </div>
         <div class="row pt-5 mt-5 text-center">
@@ -159,7 +206,10 @@
       </div>
     </footer>
   </div>
-
+  
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
   <script src="{% static "js/jquery-ui.js" %}"></script>
   <script src="{% static "js/popper.min.js" %}"></script>
@@ -169,6 +219,22 @@
   <script src="{% static "js/aos.js" %}"></script>
   <script src="{% static "js/checkout.js" %}"></script>
   <script src="{% static "js/main.js" %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static "vendor/jquery/jquery-3.2.1.min.js" %}"></script>
+  <!--===============================================================================================-->
+    <script src="{% static "vendor/animsition/js/animsition.min.js" %}"></script>
+  <!--===============================================================================================-->
+    <script src="{% static "vendor/bootstrap/js/popper.js" %}"></script>
+    <script src="{% static "vendor/bootstrap/js/bootstrap.min.js" %}"></script>
+  <!--===============================================================================================-->
+    <script src="{% static "vendor/select2/select2.min.js" %}"></script>
+  <!--===============================================================================================-->
+    <script src="{% static "vendor/daterangepicker/moment.min.js" %}"></script>
+    <script src="{% static "vendor/daterangepicker/daterangepicker.js" %}"></script>
+  <!--===============================================================================================-->
+    <script src="{% static "vendor/countdowntime/countdowntime.js" %}"></script>
+  <!--===============================================================================================-->
+    <script src="{% static "js/main1.js" %}"></script>
     
   </body>
 </html>

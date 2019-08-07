@@ -119,11 +119,11 @@
         },
         "stripe": {
             "hashes": [
-                "sha256:1b495c81412752b6aedd3bd94dd21a4be817a4073c04d9e427ceaf62942eab19",
-                "sha256:242a27691e319e1c57b3dd63297feeeda0d56ce5856f25a21cdc573281cd2736"
+                "sha256:8ed3f2645300c36d57db42467db2590d2c720e9a66fea527e4eab5284b5cce69",
+                "sha256:bc4480cf12c7f13a96b559ab4be5966fd40871ec61a6a77e1849423bf21e1599"
             ],
             "index": "pypi",
-            "version": "==2.28.1"
+            "version": "==2.29.0"
         },
         "urllib3": {
             "hashes": [
